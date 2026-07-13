@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I AM - 우리집 주인공 다롱이</title>
+    <style>
+        /* 기본 스타일 초기화 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #fcf9f5;
+            color: #333333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* 메인 카드 컨테이너 */
+        .profile-card {
+            background-color: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(163, 137, 110, 0.15);
+            width: 100%;
+            max-width: 450px;
+            overflow: hidden;
+            text-align: center;
+            border: 1px solid #f0e6dc;
+        }
+
+        /* 상단 데코레이션 배너 */
+        .card-banner {
+            background: linear-gradient(135deg, #e6cca7 0%, #cbb28a 100%);
+            height: 100px;
+            position: relative;
+        }
+
+        /* 이미지 컨테이너 */
+        .image-container {
+            position: relative;
+            margin-top: -60px;
+            margin-bottom: 16px;
+        }
+
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 5px solid #ffffff;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: #eee;
+        }
+
+        /* 텍스트 콘텐츠 */
+        .info-section {
+            padding: 0 32px 32px 32px;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #f3ede4;
+            color: #8a6d4b;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c2c2c;
+            margin-bottom: 6px;
+        }
+
+        .age {
+            font-size: 1rem;
+            color: #777777;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555555;
+            margin-bottom: 28px;
+            word-break: keep-all;
+        }
+
+        /* 인터랙션 버튼 */
+        .btn-interact {
+            background-color: #8a6d4b;
+            color: #ffffff;
+            border: none;
+            padding: 14px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(138, 109, 75, 0.2);
+        }
+
+        .btn-interact:hover {
+            background-color: #72593c;
+            transform: translateY(-1px);
+        }
+
+        .btn-interact:active {
+            transform: translateY(1px);
+        }
+
+        /* 팝업 모달 스타일 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            padding: 32px;
+            border-radius: 20px;
+            max-width: 360px;
+            width: 100%;
+            text-align: center;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #2c2c2c;
+        }
+
+        .modal-text {
+            font-size: 0.95rem;
+            color: #666666;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        .btn-close {
+            background-color: #f3ede4;
+            color: #8a6d4b;
+            border: none;
+            padding: 10px 24px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn-close:hover {
+            background-color: #ebdcc9;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 메인 프로필 카드 -->
+    <div class="profile-card">
+        <div class="card-banner"></div>
+        
+        <div class="image-container">
+            <!-- 제공해주신 이미지 경로 사용 -->
+            <img class="profile-img" src="A3E8D04A-B2A6-43E5-8D4D-330F93A19602.jpg" alt="다롱이 사진">
+        </div>
+
+        <div class="info-section">
+            <span class="tag">개인 프로젝트 : I AM</span>
+            <h1 class="name">다롱이</h1>
+            <p class="age">올해로 멋진 10살 🐾</p>
+            <p class="description">
+                안녕하세요! 우리 집의 영원한 주인공이자 행복 비타민, 다롱이를 소개합니다. 
+                하얗고 몽실몽실한 털과 까만 코가 매력적인 최고의 파트너예요!
+            </p>
+            
+            <!-- 상호작용 버튼 -->
+            <button class="btn-interact" id="btnInteract">다롱이에게 인사하기 👋</button>
+        </div>
+    </div>
+
+    <!-- 팝업 모달 창 -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <h3 class="modal-title">멍멍! 반가워요! 🐶</h3>
+            <p class="modal-text">
+                다롱이가 꼬리를 흔들며 인사를 건넸습니다!<br>
+                오늘도 다롱이처럼 따뜻하고 행복한 하루 보내세요!
+            </p>
+            <button class="btn-close" id="btnClose">닫기</button>
+        </div>
+    </div>
+
+    <!-- 바닐라 자바스크립트 구현 -->
+    <script>
+        const btnInteract = document.getElementById('btnInteract');
+        const modalOverlay = document.getElementById('modalOverlay');
+        const btnClose = document.getElementById('btnClose');
+
+        // 버튼 클릭 시 팝업 열기 리액션
+        btnInteract.addEventListener('click', () => {
+            modalOverlay.classList.add('active');
+        });
+
+        // 닫기 버튼 클릭 시 팝업 닫기
+        btnClose.addEventListener('click', () => {
+            modalOverlay.classList.remove('active');
+        });
+
+        // 배경 레이어 클릭 시 팝업 닫기
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                modalOverlay.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
