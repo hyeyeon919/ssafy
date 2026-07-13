@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I AM - 다롱이 갤러리 📸</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+        body { font-family: 'Pretendard', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#fcf9f5] text-[#333333] min-h-screen flex flex-col items-center pt-24 pb-12 px-4">
+
+    <nav class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md border-b border-[#f0e6dc] z-50 shadow-sm">
+        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="text-lg font-bold text-[#8a6d4b] flex items-center gap-2">
+                <span>🐾 I AM DARONG</span>
+            </a>
+            <div class="flex gap-6 text-sm font-semibold">
+                <a href="index.html" class="text-[#777777] hover:text-[#8a6d4b] pb-1 px-1 transition-colors">홈/소개</a>
+                <a href="gallery.html" class="text-[#8a6d4b] border-b-2 border-[#8a6d4b] pb-1 px-1 transition-colors">갤러리</a>
+                <a href="guestbook.html" class="text-[#777777] hover:text-[#8a6d4b] pb-1 px-1 transition-colors">방명록</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="w-full max-w-5xl px-2 mb-12">
+        <div class="text-center mb-9 pb-4 border-b border-dashed border-[#e0d5c8]">
+            <h2 class="text-2xl font-bold text-[#8a6d4b] mb-1.5">📸 다롱이의 일상 기록</h2>
+            <p class="text-sm text-[#888888]">생생한 영상과 예쁜 사진들을 감상해 보세요.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-[#f5ede4] flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 hover:shadow-md">
+                <video src="3478871c05664c9dbef3043e2aaaa308.mov" autoplay loop muted playsinline class="w-full h-[240px] object-cover rounded-xl mb-3.5 bg-[#fcf9f5]"></video>
+                <div class="flex justify-between items-center gap-3 mt-auto">
+                    <p class="text-sm text-[#444444] leading-snug break-keep flex-1">얌전히 손톱 케어 받는 중.. 귀여워!</p>
+                    <button class="flex items-center gap-1.5 bg-[#fff0f2] border border-[#ffd1d7] text-[#ff4b6b] px-3 py-1.5 rounded-full text-xs font-bold cursor-pointer" onclick="toggleLike(this)">
+                        <span>♥</span> <span class="like-count">42</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-[#f5ede4] flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 hover:shadow-md">
+                <video src="IMG_0762.mov" autoplay loop muted playsinline class="w-full h-[240px] object-cover rounded-xl mb-3.5 bg-[#fcf9f5]"></video>
+                <div class="flex justify-between items-center gap-3 mt-auto">
+                    <p class="text-sm text-[#444444] leading-snug break-keep flex-1">메론맛 샤베트 챱챱챱! 먹방 요정 🍈</p>
+                    <button class="flex items-center gap-1.5 bg-[#fff0f2] border border-[#ffd1d7] text-[#ff4b6b] px-3 py-1.5 rounded-full text-xs font-bold cursor-pointer" onclick="toggleLike(this)">
+                        <span>♥</span> <span class="like-count">56</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-[#f5ede4] flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 hover:shadow-md">
+                <img src="A3E8D04A-B2A6-43E5-8D4D-330F93A19602.jpg" class="w-full h-[240px] object-cover rounded-xl mb-3.5 bg-[#fcf9f5]">
+                <div class="flex justify-between items-center gap-3 mt-auto"><p class="text-sm text-[#444444] flex-1">똘망똘망한 눈망울!</p>
+                <button class="flex items-center gap-1.5 bg-[#fff0f2] border border-[#ffd1d7] text-[#ff4b6b] px-3 py-1.5 rounded-full text-xs font-bold" onclick="toggleLike(this)"><span>♥</span> <span class="like-count">12</span></button></div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-[#f5ede4] flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 hover:shadow-md">
+                <img src="EB0A1074-DF51-47DB-B969-CDBFC21F9AFD.jpg" class="w-full h-[240px] object-cover rounded-xl mb-3.5 bg-[#fcf9f5]">
+                <div class="flex justify-between items-center gap-3 mt-auto"><p class="text-sm text-[#444444] flex-1">기분 좋은 산책 시간 꼬리 살랑~</p>
+                <button class="flex items-center gap-1.5 bg-[#fff0f2] border border-[#ffd1d7] text-[#ff4b6b] px-3 py-1.5 rounded-full text-xs font-bold" onclick="toggleLike(this)"><span>♥</span> <span class="like-count">24</span></button></div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-[#f5ede4] flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 hover:shadow-md">
+                <img src="02B2B634-3119-42FE-902A-92118767A18F.jpg" class="w-full h-[240px] object-cover rounded-xl mb-3.5 bg-[#fcf9f5]">
+                <div class="flex justify-between items-center gap-3 mt-auto"><p class="text-sm text-[#444444] flex-1">엘리베이터도 무섭지 않아!</p>
+                <button class="flex items-center gap-1.5 bg-[#fff0f2] border border-[#ffd1d7] text-[#ff4b6b] px-3 py-1.5 rounded-full text-xs font-bold" onclick="toggleLike(this)"><span>♥</span> <span class="like-count">18</span></button></div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-[#f5ede4] flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 hover:shadow-md">
+                <img src="49D642B1-659F-40CC-8721-846A6A132FE1.jpg" class="w-full h-[240px] object-cover rounded-xl mb-3.5 bg-[#fcf9f5]">
+                <div class="flex justify-between items-center gap-3 mt-auto"><p class="text-sm text-[#444444] flex-1">예쁜 꽃밭 카페 나들이 🌸</p>
+                <button class="flex items-center gap-1.5 bg-[#fff0f2] border border-[#ffd1d7] text-[#ff4b6b] px-3 py-1.5 rounded-full text-xs font-bold" onclick="toggleLike(this)"><span>♥</span> <span class="like-count">31</span></button></div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-[#f5ede4] flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 hover:shadow-md">
+                <img src="001E9C74-DBCA-4A4B-8989-543DEF4149B9.jpg" class="w-full h-[240px] object-cover rounded-xl mb-3.5 bg-[#fcf9f5]">
+                <div class="flex justify-between items-center gap-3 mt-auto"><p class="text-sm text-[#444444] flex-1">소중한 애착 수건 쟁탈전</p>
+                <button class="flex items-center gap-1.5 bg-[#fff0f2] border border-[#ffd1d7] text-[#ff4b6b] px-3 py-1.5 rounded-full text-xs font-bold" onclick="toggleLike(this)"><span>♥</span> <span class="like-count">15</span></button></div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-[#f5ede4] flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 hover:shadow-md">
+                <img src="2E34D9D7-8E96-4596-BD23-21237960B5C8.jpg" class="w-full h-[240px] object-cover rounded-xl mb-3.5 bg-[#fcf9f5]">
+                <div class="flex justify-between items-center gap-3 mt-auto"><p class="text-sm text-[#444444] flex-1">뒤에서 지켜보고 있다개</p>
+                <button class="flex items-center gap-1.5 bg-[#fff0f2] border border-[#ffd1d7] text-[#ff4b6b] px-3 py-1.5 rounded-full text-xs font-bold" onclick="toggleLike(this)"><span>♥</span> <span class="like-count">9</span></button></div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-[#f5ede4] flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 hover:shadow-md">
+                <img src="9AEE92AB-1992-4AB1-9EA5-EAAE58CE4B0B.jpg" class="w-full h-[240px] object-cover rounded-xl mb-3.5 bg-[#fcf9f5]">
+                <div class="flex justify-between items-center gap-3 mt-auto"><p class="text-sm text-[#444444] flex-1">따뜻한 무릎 베개가 좋아</p>
+                <button class="flex items-center gap-1.5 bg-[#fff0f2] border border-[#ffd1d7] text-[#ff4b6b] px-3 py-1.5 rounded-full text-xs font-bold" onclick="toggleLike(this)"><span>♥</span> <span class="like-count">27</span></button></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleLike(button) {
+            const countElement = button.querySelector('.like-count');
+            let currentCount = parseInt(countElement.textContent);
+            if (button.classList.contains('bg-rose-500')) {
+                button.classList.remove('bg-rose-500', 'text-white', 'border-rose-500');
+                button.classList.add('bg-[#fff0f2]', 'border-[#ffd1d7]', 'text-[#ff4b6b]');
+                countElement.textContent = currentCount - 1;
+            } else {
+                button.classList.remove('bg-[#fff0f2]', 'border-[#ffd1d7]', 'text-[#ff4b6b]');
+                button.classList.add('bg-rose-500', 'text-white', 'border-rose-500');
+                countElement.textContent = currentCount + 1;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -4,498 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I AM - 우리집 주인공 다롱이 🐾</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        /* 기본 스타일 초기화 */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-        }
-
-        body {
-            background-color: #fcf9f5;
-            color: #333333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding: 40px 20px;
-        }
-
-        /* 1. 상단 프로필 카드 스타일 */
-        .profile-card {
-            background-color: #ffffff;
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(163, 137, 110, 0.15);
-            width: 100%;
-            max-width: 450px;
-            overflow: hidden;
-            text-align: center;
-            border: 1px solid #f0e6dc;
-            margin-bottom: 50px;
-        }
-
-        .card-banner {
-            background: linear-gradient(135deg, #e6cca7 0%, #cbb28a 100%);
-            height: 100px;
-            position: relative;
-        }
-
-        .image-container {
-            position: relative;
-            margin-top: -60px;
-            margin-bottom: 16px;
-        }
-
-        .profile-img {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            border: 5px solid #ffffff;
-            object-fit: cover;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            background-color: #eee;
-        }
-
-        .info-section {
-            padding: 0 32px 32px 32px;
-        }
-
-        .tag {
-            display: inline-block;
-            background-color: #f3ede4;
-            color: #8a6d4b;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .name {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #2c2c2c;
-            margin-bottom: 6px;
-        }
-
-        .age {
-            font-size: 1rem;
-            color: #777777;
-            margin-bottom: 20px;
-        }
-
-        .description {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #555555;
-            margin-bottom: 28px;
-            word-break: keep-all;
-        }
-
-        .btn-interact {
-            background-color: #8a6d4b;
-            color: #ffffff;
-            border: none;
-            padding: 14px 28px;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            width: 100%;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 12px rgba(138, 109, 75, 0.2);
-        }
-
-        .btn-interact:hover {
-            background-color: #72593c;
-            transform: translateY(-1px);
-        }
-
-        .btn-interact:active {
-            transform: translateY(1px);
-        }
-
-        /* 2. 하단 일기장 섹션 스타일 (간단히 볼 수 있는 3열 그리드 구조) */
-        .diary-section {
-            width: 100%;
-            max-width: 1000px; /* 3열 정렬을 고려해 전체 폭 확장 */
-        }
-
-        .diary-header {
-            text-align: center;
-            margin-bottom: 35px;
-            padding-bottom: 15px;
-            border-bottom: 2px dashed #e0d5c8;
-        }
-
-        .diary-header h2 {
-            font-size: 1.8rem;
-            color: #8a6d4b;
-            margin-bottom: 6px;
-        }
-
-        .diary-header p {
-            font-size: 0.95rem;
-            color: #888888;
-        }
-
-        /* 3열 레이아웃 그리드 설정 */
-        .diary-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-        }
-
-        .diary-card {
-            background: #ffffff;
-            padding: 16px;
-            border-radius: 20px;
-            box-shadow: 0 6px 18px rgba(163, 137, 110, 0.06);
-            border: 1px solid #f5ede4;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .diary-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(163, 137, 110, 0.12);
-        }
-
-        /* 미디어 요소 공통 스타일 (사진 및 영상 움짤 효과) */
-        .diary-card img, .diary-card video {
-            width: 100%;
-            height: 240px;
-            object-fit: cover;
-            border-radius: 14px;
-            margin-bottom: 14px;
-            background-color: #fcf9f5;
-        }
-
-        /* 카드 하단 구조 (글 + 좋아요 버튼) */
-        .diary-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            margin-top: auto; /* 내용 길이에 상관없이 하단에 고정 */
-        }
-
-        .diary-text {
-            font-size: 0.95rem;
-            color: #444444;
-            line-height: 1.5;
-            word-break: keep-all;
-            flex: 1;
-        }
-
-        /* 좋아요 버튼 스타일 */
-        .like-button {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            background-color: #fff0f2;
-            border: 1px solid #ffd1d7;
-            color: #ff4b6b;
-            padding: 6px 12px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            user-select: none;
-            white-space: nowrap;
-        }
-
-        .like-button:hover {
-            background-color: #ffe0e4;
-        }
-
-        /* 좋아요 활성화 상태 */
-        .like-button.liked {
-            background-color: #ff4b6b;
-            border-color: #ff4b6b;
-            color: #ffffff;
-        }
-
-        .like-icon {
-            font-size: 1rem;
-        }
-
-        /* 팝업 모달 스타일 */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            padding: 20px;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-content {
-            background-color: #ffffff;
-            padding: 32px;
-            border-radius: 20px;
-            max-width: 360px;
-            width: 100%;
-            text-align: center;
-            transform: scale(0.8);
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        .modal-overlay.active .modal-content {
-            transform: scale(1);
-        }
-
-        .modal-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: #2c2c2c;
-        }
-
-        .modal-text {
-            font-size: 0.95rem;
-            color: #666666;
-            line-height: 1.5;
-            margin-bottom: 24px;
-        }
-
-        .btn-close {
-            background-color: #f3ede4;
-            color: #8a6d4b;
-            border: none;
-            padding: 10px 24px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        .btn-close:hover {
-            background-color: #ebdcc9;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 60px;
-            color: #aaaaaa;
-            font-size: 0.9rem;
-        }
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+        body { font-family: 'Pretendard', sans-serif; }
     </style>
 </head>
-<body>
+<body class="bg-[#fcf9f5] text-[#333333] min-h-screen flex flex-col items-center pt-24 pb-12 px-4">
 
-    <!-- [상단] 기존 다롱이 프로필 카드 섹션 (그대로 보존) -->
-    <div class="profile-card">
-        <div class="card-banner"></div>
-        
-        <div class="image-container">
-            <img class="profile-img" src="A3E8D04A-B2A6-43E5-8D4D-330F93A19602.jpg" alt="다롱이 대표 사진">
+    <nav class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md border-b border-[#f0e6dc] z-50 shadow-sm">
+        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="text-lg font-bold text-[#8a6d4b] flex items-center gap-2">
+                <span>🐾 I AM DARONG</span>
+            </a>
+            <div class="flex gap-6 text-sm font-semibold">
+                <a href="index.html" class="text-[#8a6d4b] border-b-2 border-[#8a6d4b] pb-1 px-1 transition-colors">홈/소개</a>
+                <a href="gallery.html" class="text-[#777777] hover:text-[#8a6d4b] pb-1 px-1 transition-colors">갤러리</a>
+                <a href="guestbook.html" class="text-[#777777] hover:text-[#8a6d4b] pb-1 px-1 transition-colors">방명록</a>
+            </div>
         </div>
+    </nav>
 
-        <div class="info-section">
-            <span class="tag">개인 프로젝트 : I AM</span>
-            <h1 class="name">다롱이</h1>
-            <p class="age">올해로 멋진 10살 🐾</p>
-            <p class="description">
+    <div class="bg-white rounded-3xl shadow-xl border border-[#f0e6dc] w-full max-w-[450px] overflow-hidden text-center mb-12 transition-all duration-300 hover:shadow-2xl">
+        <div class="bg-gradient-to-br from-[#e6cca7] to-[#cbb28a] h-[100px] relative"></div>
+        <div class="relative -mt-[60px] mb-4 flex justify-center">
+            <img class="w-[140px] h-[140px] rounded-full border-4 border-white object-cover shadow-md bg-gray-100" 
+                 src="A3E8D04A-B2A6-43E5-8D4D-330F93A19602.jpg" alt="다롱이 대표 사진">
+        </div>
+        <div class="px-8 pb-8">
+            <span class="inline-block bg-[#f3ede4] text-[#8a6d4b] px-3 py-1 rounded-xl text-xs font-semibold mb-3">개인 프로젝트 : I AM (MPA)</span>
+            <h1 class="text-3xl font-bold text-[#2c2c2c] mb-1.5">다롱이</h1>
+            <p class="text-sm text-[#777777] mb-5">올해로 멋진 10살 🐾</p>
+            <p class="text-sm leading-relaxed text-[#555555] mb-7 break-keep">
                 안녕하세요! 우리 집의 영원한 주인공이자 행복 비타민, 다롱이를 소개합니다. 
-                하얗고 몽실몽실한 털과 까만 코가 매력적인 최고의 파트너예요!
+                하얗고 몽실몽실한 털과 까만 코가 매력적인 최고의 파트너예요! 상단 메뉴를 클릭해 갤러리와 방명록도 구경해 보세요!
             </p>
-            
-            <button class="btn-interact" id="btnInteract">다롱이에게 인사하기 👋</button>
+            <button id="btnInteract" class="bg-[#8a6d4b] hover:bg-[#72593c] text-white py-3.5 px-7 text-sm font-semibold rounded-full w-full cursor-pointer transition-all active:scale-[0.98]">
+                다롱이에게 인사하기 👋
+            </button>
         </div>
     </div>
 
-    <!-- [하단] 3열 그리드 레이아웃의 소소한 일상 기록 섹션 -->
-    <div class="diary-section">
-        <div class="diary-header">
-            <h2>📸 다롱이의 일상 기록</h2>
-        </div>
-
-        <div class="diary-grid">
-            
-            <!-- [추가 비디오 1] 손톱 케어 영상 (소리 없이 자동 재생/반복을 통해 움짤 효과 제공) -->
-            <div class="diary-card">
-                <video src="3478871c05664c9dbef3043e2aaaa308.mov" autoplay loop muted playsinline></video>
-                <div class="diary-footer">
-                    <p class="diary-text">얌전히 손톱 케어 받는 중.. 얌전해서 더 귀여워!</p>
-                    <button class="like-button" onclick="toggleLike(this)">
-                        <span class="like-icon">♥</span> <span class="like-count">42</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- [추가 비디오 2] 샤베트 먹방 영상 (소리 없이 자동 재생/반복을 통해 움짤 효과 제공) -->
-            <div class="diary-card">
-                <video src="IMG_0762.mov" autoplay loop muted playsinline></video>
-                <div class="diary-footer">
-                    <p class="diary-text">얼려 먹는 메론맛 샤베트 챱챱챱! 먹방 요정 다롱이 🍈</p>
-                    <button class="like-button" onclick="toggleLike(this)">
-                        <span class="like-icon">♥</span> <span class="like-count">56</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- 일기 피드 1 -->
-            <div class="diary-card">
-                <img src="A3E8D04A-B2A6-43E5-8D4D-330F93A19602.jpg" alt="사진1">
-                <div class="diary-footer">
-                    <p class="diary-text">오늘도 똘망똘망한 눈으로 기다리는 중!</p>
-                    <button class="like-button" onclick="toggleLike(this)">
-                        <span class="like-icon">♥</span> <span class="like-count">12</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- 일기 피드 2 -->
-            <div class="diary-card">
-                <img src="EB0A1074-DF51-47DB-B969-CDBFC21F9AFD.jpg" alt="사진2">
-                <div class="diary-footer">
-                    <p class="diary-text">기분 좋은 산책 시간, 꼬리가 살랑살랑~</p>
-                    <button class="like-button" onclick="toggleLike(this)">
-                        <span class="like-icon">♥</span> <span class="like-count">24</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- 일기 피드 3 -->
-            <div class="diary-card">
-                <img src="02B2B634-3119-42FE-902A-92118767A18F.jpg" alt="사진3">
-                <div class="diary-footer">
-                    <p class="diary-text">엘리베이터는 조금 무섭지만 같이 타면 괜찮아.</p>
-                    <button class="like-button" onclick="toggleLike(this)">
-                        <span class="like-icon">♥</span> <span class="like-count">18</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- 일기 피드 4 -->
-            <div class="diary-card">
-                <img src="49D642B1-659F-40CC-8721-846A6A132FE1.jpg" alt="사진4">
-                <div class="diary-footer">
-                    <p class="diary-text">예쁜 꽃밭 카페에서 얌전히 기다리기 성공!</p>
-                    <button class="like-button" onclick="toggleLike(this)">
-                        <span class="like-icon">♥</span> <span class="like-count">31</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- 일기 피드 5 -->
-            <div class="diary-card">
-                <img src="001E9C74-DBCA-4A4B-8989-543DEF4149B9.jpg" alt="사진5">
-                <div class="diary-footer">
-                    <p class="diary-text">소중한 애착 수건은 아무도 못 줘!</p>
-                    <button class="like-button" onclick="toggleLike(this)">
-                        <span class="like-icon">♥</span> <span class="like-count">15</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- 일기 피드 6 -->
-            <div class="diary-card">
-                <img src="2E34D9D7-8E96-4596-BD23-21237960B5C8.jpg" alt="사진6">
-                <div class="diary-footer">
-                    <p class="diary-text">뭐 하나~ 뒤에서 가만히 지켜보는 중.</p>
-                    <button class="like-button" onclick="toggleLike(this)">
-                        <span class="like-icon">♥</span> <span class="like-count">9</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- 일기 피드 7 -->
-            <div class="diary-card">
-                <img src="9AEE92AB-1992-4AB1-9EA5-EAAE58CE4B0B.jpg" alt="사진7">
-                <div class="diary-footer">
-                    <p class="diary-text">무릎 위가 세상에서 제일 따뜻해. 여기서 잘 거야.</p>
-                    <button class="like-button" onclick="toggleLike(this)">
-                        <span class="like-icon">♥</span> <span class="like-count">27</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- 일기 피드 8 -->
-            <div class="diary-card">
-                <img src="BE72088A-8C26-4E39-896B-E5FFD0958CAB.jpg" alt="사진8">
-                <div class="diary-footer">
-                    <p class="diary-text">찰떡같이 옆에 붙어서 꿀잠 중~</p>
-                    <button class="like-button" onclick="toggleLike(this)">
-                        <span class="like-icon">♥</span> <span class="like-count">35</span>
-                    </button>
-                </div>
-            </div>
-
+    <div id="modalOverlay" class="fixed inset-0 bg-black/50 flex justify-center items-center opacity-0 invisible transition-all duration-300 z-50 p-5">
+        <div class="bg-white p-8 rounded-2xl max-w-[360px] w-full text-center scale-75 transition-all duration-300 id-modal-content">
+            <h3 class="text-xl font-bold mb-3 text-[#2c2c2c]">멍멍! 반가워요! 🐶</h3>
+            <p class="text-sm text-[#666666] leading-relaxed mb-6">다롱이가 꼬리를 흔들며 인사를 건넸습니다!<br>방문해 주셔서 감사해요!</p>
+            <button id="btnClose" class="bg-[#f3ede4] hover:bg-[#ebdcc9] text-[#8a6d4b] py-2.5 px-6 text-sm font-semibold rounded-lg w-full cursor-pointer">닫기</button>
         </div>
     </div>
 
-    <!-- 팝업 모달 창 -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal-content">
-            <h3 class="modal-title">멍멍! 반가워요! 🐶</h3>
-            <p class="modal-text">
-                다롱이가 꼬리를 흔들며 인사를 건넸습니다!<br>
-                오늘도 다롱이처럼 따뜻하고 행복한 하루 보내세요!
-            </p>
-            <button class="btn-close" id="btnClose">닫기</button>
-        </div>
-    </div>
-
-    <footer>
+    <footer class="text-center text-[#aaaaaa] text-sm mt-auto">
         <p>다롱이와 함께하는 행복한 매일 🐾</p>
     </footer>
 
-    <!-- 자바스크립트 구현 -->
     <script>
-        // 프로필 카드 인사하기 모달 로직
         const btnInteract = document.getElementById('btnInteract');
         const modalOverlay = document.getElementById('modalOverlay');
         const btnClose = document.getElementById('btnClose');
+        const modalContent = document.querySelector('.id-modal-content');
 
         btnInteract.addEventListener('click', () => {
-            modalOverlay.classList.add('active');
+            modalOverlay.classList.remove('invisible', 'opacity-0');
+            setTimeout(() => { modalContent.classList.remove('scale-75'); }, 10);
         });
-
-        btnClose.addEventListener('click', () => {
-            modalOverlay.classList.remove('active');
-        });
-
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) {
-                modalOverlay.classList.remove('active');
-            }
-        });
-
-        // 일기 피드 좋아요 버튼 토글 함수
-        function toggleLike(button) {
-            const countElement = button.querySelector('.like-count');
-            let currentCount = parseInt(countElement.textContent);
-
-            if (button.classList.contains('liked')) {
-                button.classList.remove('liked');
-                countElement.textContent = currentCount - 1;
-            } else {
-                button.classList.add('liked');
-                countElement.textContent = currentCount + 1;
-            }
-        }
+        const closeModal = () => {
+            modalContent.classList.add('scale-75');
+            setTimeout(() => { modalOverlay.classList.add('invisible', 'opacity-0'); }, 150);
+        };
+        btnClose.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
     </script>
 </body>
 </html>
